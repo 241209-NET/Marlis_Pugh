@@ -6,6 +6,7 @@ public class Utilities
 {
 
     List<Customer> OrderDetails = [];
+    
 
     public void ShowMenu()
     {
@@ -30,28 +31,123 @@ public class Utilities
     {
 
             List<Customer> orderDetails = [];
+            int num = 0;
         
         Console.WriteLine("Select your drink: Sprite, Tea, M-Dew: MAKE SURE YOUR DRINK SELECTION IS SPELLED CORRECT THANKS!");
-            string drinkOption = Console.ReadLine();
+            string? drinkOption = Console.ReadLine();
             Console.WriteLine("----------------------------------------------------------------------------------");
             Console.WriteLine("Select your entree: Chicken Sand, Burger, Fish Sand: MAKE SURE YOUR SELECTION IS SPELLED CORRECT THANKS!");
-            string entreeOption = Console.ReadLine();
+            string? entreeOption = Console.ReadLine();
             Console.WriteLine("----------------------------------------------------------------------------------");
             Console.WriteLine("Select your drink: SM, MD, LG: MAKE SURE YOUR SELECTION IS SPELLED CORRECT THANKS!");
-            string sizeOption = Console.ReadLine();
+            string? sizeOption = Console.ReadLine();
             Console.WriteLine("----------------------------------------------------------------------------------");
             Console.WriteLine("You selected: " + drinkOption + "-" + entreeOption + "-" + sizeOption);
              Console.WriteLine("If this is correct press Y for yes or N for no Thanks");
-             string correctOrder = Console.ReadLine();
+             string? correctOrder = Console.ReadLine();
              Console.WriteLine("----------------------------------------------------------------------------------");
             if(correctOrder == "Y") {
-            Customer currentOrder = new Customer(drinkOption, entreeOption, sizeOption);
+            Customer? currentOrder = new Customer(drinkOption!, entreeOption!, sizeOption!);
             orderDetails.Add(currentOrder);
             } else if (correctOrder == "N") {
-            Console.WriteLine("Please renter selction");
+            Console.WriteLine("Please re-enter selection");
+            ShowMenu();
+            PlaceOrderOne();
+            
             } else {
             Console.WriteLine("Thanks for coming");
             }
+
+            Console.WriteLine("Your total is: ");
+            Console.WriteLine("----------------------------------------------------------------------------------");
+
+            if(entreeOption == "Chicken Sand") 
+                num = 1;
+                else if(entreeOption == "Burger")
+                num = 2;
+                else 
+                {
+                num = 3;
+                }
+
+                switch(num) {
+
+                    case 1:
+                Console.WriteLine("Combo price is $15.99");
+                    break;
+
+                        case 2:
+                Console.WriteLine("Combo price is $13.99");
+                    break;
+
+                    case 3:
+                Console.WriteLine("Combo price is $15.99");
+                break;
+
+                default:
+                Console.WriteLine("Exit Program");
+                break;
+
+                    }
+
+                    double itemPrice1 = 13.99;
+                    double itemPrice = 15.99;
+                    double tax = 3.99;
+                    double totalPrice = tax + itemPrice;
+                    double totalPrice1 = tax + itemPrice1;
+
+                Console.WriteLine("Your total plus tax is: ");
+                    if(num == 1)
+                    Console.WriteLine(totalPrice);
+                    else if (num == 2)
+                Console.WriteLine(totalPrice1);
+                    else if (num == 3)
+                Console.WriteLine(totalPrice);
+                        else
+                Console.WriteLine("Thanks for coming");
+                Console.WriteLine("----------------------------------------------------------------------------------");
+
+                foreach(Customer reciept in orderDetails)
+                        {
+                    Console.WriteLine("Your Order Included: ");
+                    Console.WriteLine("Drink selection: " + reciept.drink + "Protein selection: " + reciept.entree + "Combo Size selection: " + reciept.size);
+                         }
+                         Console.WriteLine("----------------------------------------------------------------------------------");
+    
+
+    }
+
+    public void PlaceOrderOne() 
+    {
+
+            List<Customer> orderDetails = [];
+            
+        
+        Console.WriteLine("Select your drink: Sprite, Tea, M-Dew: MAKE SURE YOUR DRINK SELECTION IS SPELLED CORRECT THANKS!");
+            string? drinkOption = Console.ReadLine();
+            Console.WriteLine("----------------------------------------------------------------------------------");
+            Console.WriteLine("Select your entree: Chicken Sand, Burger, Fish Sand: MAKE SURE YOUR SELECTION IS SPELLED CORRECT THANKS!");
+            string? entreeOption = Console.ReadLine();
+            Console.WriteLine("----------------------------------------------------------------------------------");
+            Console.WriteLine("Select your drink: SM, MD, LG: MAKE SURE YOUR SELECTION IS SPELLED CORRECT THANKS!");
+            string? sizeOption = Console.ReadLine();
+            Console.WriteLine("----------------------------------------------------------------------------------");
+            Console.WriteLine("You selected: " + drinkOption + "-" + entreeOption + "-" + sizeOption);
+             Console.WriteLine("If this is correct press Y for yes or N for no Thanks");
+             string? correctOrder = Console.ReadLine();
+             Console.WriteLine("----------------------------------------------------------------------------------");
+            if(correctOrder == "Y") {
+            Customer? currentOrder = new Customer(drinkOption!, entreeOption!, sizeOption!);
+            orderDetails.Add(currentOrder);
+            } else if (correctOrder == "N") {
+            Console.WriteLine("Please re-enter selection");
+            ShowMenu();
+            PlaceOrderOne();
+            
+            } else {
+            Console.WriteLine("Thanks for coming");
+            }
+    
 
     }
 
