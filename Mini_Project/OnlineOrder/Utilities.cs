@@ -110,7 +110,7 @@ public class Utilities
                 foreach(Customer reciept in orderDetails)
                         {
                     Console.WriteLine("Your Order Included: ");
-                    Console.WriteLine("Drink selection: " + reciept.drink + "Protein selection: " + reciept.entree + "Combo Size selection: " + reciept.size);
+                    Console.WriteLine("Drink selection: " + reciept.drink + " Protein selection: " + reciept.entree + " Combo Size selection: " + reciept.size);
                          }
                          Console.WriteLine("----------------------------------------------------------------------------------");
     
