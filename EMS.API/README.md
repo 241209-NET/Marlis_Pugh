@@ -1,7 +1,7 @@
 ## ABOUT
 
 This is a system designed to manage the employees in a organization. 
-The goal is to help identify their personel in different departments, roles and account holders.
+The goal is to help identify their personnel in different departments, roles and account holders.
 Also providing any products they offer for their employees or outside customer.
 
 ## USAGE
