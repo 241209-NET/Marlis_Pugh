@@ -26,11 +26,17 @@ This project is for personal use and not for other people to contribute at this 
 
 Technologies
 
-- (VSCode)
-- (Azure DataBase)
-- (Docker)
-- (.Net SDK)
-- (xUnit)
+- C# (Programming Languge)
+- Visual Studio (IDE)
+- .NETSDK (Development Kit)
+- Azure Data Stduio (Database Management)
+- Docker (Container Management)
+- Entity Framework (ORM)
+- xUnit (Unit Testing)
+- NuGet (Package Management)
+- Git (Version Control)
+- Github (Repository Management)
+- ASP.Net Core (MVC)
 
 ## COMMUNITY
 
