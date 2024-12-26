@@ -4,6 +4,9 @@ This is a system designed to manage the employees in a organization.
 The goal is to help identify their personnel in different departments, roles and account holders.
 Also providing any products they offer for their employees or outside customer.
 
+## PROJECT NAME
+(EMS) EMPLOYEE MANAGEMENT SYSTEM
+
 ## USAGE
 
 This project is for personal use and to present to colleagues in training.
