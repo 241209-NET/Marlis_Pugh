@@ -11,7 +11,7 @@ public class HomeController : ControllerBase
     [HttpGet]
     public IActionResult WelcomeToEMS() 
     {
-        IActionResult VerbStatus = Ok("Status Configured"); 
+        IActionResult VerbStatus = Ok("Please Login for more options"); 
         
         return VerbStatus;
     }
