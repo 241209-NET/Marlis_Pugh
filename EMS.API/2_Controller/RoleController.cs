@@ -35,6 +35,28 @@ public class RoleController : ControllerBase
         return VerbStatus;
     }
 
+     [HttpDelete]
+    public IActionResult DeleteRole(int id)
+    {
+        var deleteRole = _roleService.DeleteRoleById(id);
+
+        if(deleteRole is null) return NotFound();
+        var VerbStatus = Ok(deleteRole);
+
+        return VerbStatus;
+    }
+
+     [HttpPut]
+    public IActionResult UpdateRole(int id, string name)
+    {
+        var updateRole = _roleService.UpdateRoleById(id, name);
+
+        if(updateRole is null) return NotFound();
+        var VerbStatus = Ok(updateRole);
+
+        return VerbStatus;
+    }
+
 
 
 

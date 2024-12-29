@@ -35,6 +35,28 @@ public class ProductsController : ControllerBase
         return VerbStatus;
     }
 
+     [HttpDelete]
+    public IActionResult DeleteProducts(int id)
+    {
+        var deletePro = _productsService.DeleteProductsById(id);
+
+        if(deletePro is null) return NotFound();
+        var VerbStatus = Ok(deletePro);
+
+        return VerbStatus;
+    }
+
+     [HttpPut]
+    public IActionResult UpdateProducts(int id, string name)
+    {
+        var updatePro = _productsService.UpdateProductsById(id, name);
+
+        if(updatePro is null) return NotFound();
+        var VerbStatus = Ok(updatePro);
+
+        return VerbStatus;
+    }
+
 
 
 

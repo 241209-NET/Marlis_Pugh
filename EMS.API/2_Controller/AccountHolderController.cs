@@ -35,6 +35,28 @@ public class AccountHolderController : ControllerBase
         return VerbStatus;
     }
 
+    [HttpDelete]
+    public IActionResult DeleteAccount(int id)
+    {
+        var deleteAcc = _accountHolderService.DeleteAccountHolderById(id);
+
+        if(deleteAcc is null) return NotFound();
+        var VerbStatus = Ok(deleteAcc);
+
+        return VerbStatus;
+    }
+
+     [HttpPut]
+    public IActionResult UpdateAccount(int id, string email)
+    {
+        var updateAcc = _accountHolderService.UpdateAccountById(id, email);
+
+        if(updateAcc is null) return NotFound();
+        var VerbStatus = Ok(updateAcc);
+
+        return VerbStatus;
+    }
+
 
 
 

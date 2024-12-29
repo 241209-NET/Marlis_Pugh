@@ -15,12 +15,14 @@ public class ProductsService : IProductsService
 
     public Products CreateProduct(Products newProduct)
     {
-        throw new NotImplementedException();
+        return _productsRepository.CreateProduct(newProduct);
     }
 
-    public void DeleteProductsById(int id)
+    public Products? DeleteProductsById(int id)
     {
-        throw new NotImplementedException();
+         var p = GetProductById(id);
+        if(p is not null) _productsRepository.DeleteProductsById(id);
+        return p;
     }
 
     public IEnumerable<Products> FindAllProducts()
@@ -31,11 +33,21 @@ public class ProductsService : IProductsService
 
     public Products? GetProductById(int id)
     {
-        throw new NotImplementedException();
+        if(id < 1) return null;
+        return _productsRepository.GetProductById(id);
     }
 
     public IEnumerable<Products> GetProductsByName(string name)
     {
         throw new NotImplementedException();
+    }
+
+    public Products? UpdateProductsById(int id, string name)
+    {
+
+        Products? pro = GetProductById(id);
+        if(pro is not null) _productsRepository.UpdateProductById(id, name);
+        return pro;
+       
     }
 }

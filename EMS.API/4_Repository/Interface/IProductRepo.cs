@@ -14,7 +14,7 @@ IEnumerable<Products> FindAllProducts();
 Products? GetProductById(int id);
 IEnumerable<Products> GetProductsByName(string name);
 void DeleteProductsById(int id);
-
+Products? UpdateProductById(int id, string name);
 
 
 

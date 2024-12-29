@@ -20,12 +20,18 @@ public class ProductsRepository : IProductsRepository
 
     public Products CreateProduct(Products newProduct)
     {
-        throw new NotImplementedException();
+         _empContext.Products.Add(newProduct);
+            _empContext.SaveChanges();
+
+            return newProduct; 
     }
 
     public void DeleteProductsById(int id)
     {
-        throw new NotImplementedException();
+        Products? pro = GetProductById(id);
+        
+            _empContext.Products.Remove(pro!);
+            _empContext.SaveChanges();
     }
 
     public IEnumerable<Products> FindAllProducts()
@@ -35,11 +41,22 @@ public class ProductsRepository : IProductsRepository
 
     public Products? GetProductById(int id)
     {
-        throw new NotImplementedException();
+        return _empContext.Products.Find(id);
     }
 
     public IEnumerable<Products> GetProductsByName(string name)
     {
         throw new NotImplementedException();
+    }
+
+    public Products? UpdateProductById(int id, string name)
+    {
+        
+        Products? pro = GetProductById(id);
+        pro!.Name = name; 
+        _empContext.Products.Update(pro);
+        _empContext.SaveChanges();
+
+        return pro;
     }
 }

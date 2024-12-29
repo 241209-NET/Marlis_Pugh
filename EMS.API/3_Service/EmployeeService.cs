@@ -23,24 +23,36 @@ public class EmployeeService : IEmployeeService
         return _employeeRepository.CreateEmployee(newEmp);
     }
 
-    public void DeleteEmployeeById(int id)
-    {
-        throw new NotImplementedException();
-    }
-
     public IEnumerable<Employee> FindAllEmps()
     {
         var empList = _employeeRepository.FindAllEmps();
         return empList;
     }
 
-    public Employee? GetEmployeeById(int id)
+    public IEnumerable<Employee> GetEmployeeByName(string name)
     {
         throw new NotImplementedException();
     }
 
-    public IEnumerable<Employee> GetEmployeeByName(string name)
+    public Employee? GetEmployeeById(int id)
     {
-        throw new NotImplementedException();
+        if(id < 1) return null;
+        return _employeeRepository.GetEmployeeById(id);
+    }
+
+    public Employee? DeleteEmployeeById(int id)
+    {
+          var p = GetEmployeeById(id);
+        if(p is not null) _employeeRepository.DeleteEmployeeById(id);
+        return p;
+    }
+
+    public Employee? UpdateEmployeeById(int id, string Fname)
+    {
+
+        Employee? emp = GetEmployeeById(id);
+        if(emp is not null) _employeeRepository.UpdateEmployeeById(id, Fname);
+        return emp;
+       
     }
 }

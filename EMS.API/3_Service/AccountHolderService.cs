@@ -15,12 +15,14 @@ public class AccountHolderService : IAccountHolderService
 
     public AccountHolder CreateAccount(AccountHolder newAccount)
     {
-        throw new NotImplementedException();
+        return _accountHolderRepository.CreateAccount(newAccount);
     }
 
-    public void DeleteAccountHolderById(int id)
+    public AccountHolder? DeleteAccountHolderById(int id)
     {
-        throw new NotImplementedException();
+         var p = GetAccountById(id);
+        if(p is not null) _accountHolderRepository.DeleteAccountHolderById(id);
+        return p;
     }
 
     public IEnumerable<AccountHolder> FindAllAccounts()
@@ -31,11 +33,21 @@ public class AccountHolderService : IAccountHolderService
 
     public AccountHolder? GetAccountById(int id)
     {
-        throw new NotImplementedException();
+        if(id < 1) return null;
+        return _accountHolderRepository.GetAccountById(id);
     }
 
     public IEnumerable<AccountHolder> GetAccountByName(string name)
     {
         throw new NotImplementedException();
+    }
+
+    public AccountHolder? UpdateAccountById(int id, string email)
+    {
+
+        AccountHolder? acc = GetAccountById(id);
+        if(acc is not null) _accountHolderRepository.UpdateAccountHolderById(id, email);
+        return acc;
+       
     }
 }

@@ -35,6 +35,28 @@ public class DepartmentController : ControllerBase
         return VerbStatus;
     }
 
+     [HttpDelete]
+    public IActionResult DeleteDepartment(int id)
+    {
+        var deleteDep = _departmentService.DeleteDepartmentById(id);
+
+        if(deleteDep is null) return NotFound();
+        var VerbStatus = Ok(deleteDep);
+
+        return VerbStatus;
+    }
+
+     [HttpPut]
+    public IActionResult UpdateDepartment(int id, string name)
+    {
+        var updateDep = _departmentService.UpdateDepartmentById(id, name);
+
+        if(updateDep is null) return NotFound();
+        var VerbStatus = Ok(updateDep);
+
+        return VerbStatus;
+    }
+
 
 
 

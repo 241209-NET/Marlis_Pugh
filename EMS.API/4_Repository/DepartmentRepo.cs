@@ -18,12 +18,18 @@ private readonly EmployeeContext _empContext;
 
     public Department CreateDepartment(Department newDepartment)
     {
-        throw new NotImplementedException();
+         _empContext.Departments.Add(newDepartment);
+            _empContext.SaveChanges();
+
+            return newDepartment; 
     }
 
     public void DeleteDepartmentById(int id)
     {
-        throw new NotImplementedException();
+        Department? dep = GetDepartmentById(id);
+        
+            _empContext.Departments.Remove(dep!);
+            _empContext.SaveChanges();
     }
 
     public IEnumerable<Department> FindAllDepartments()
@@ -33,11 +39,22 @@ private readonly EmployeeContext _empContext;
 
     public Department? GetDepartmentById(int id)
     {
-        throw new NotImplementedException();
+        return _empContext.Departments.Find(id);
     }
 
     public IEnumerable<Department> GetDepartmentByName(string name)
     {
         throw new NotImplementedException();
+    }
+
+    public Department? UpdateDepartmentById(int id, string name)
+    {
+        
+        Department? dep = GetDepartmentById(id);
+        dep!.Name = name; 
+        _empContext.Departments.Update(dep);
+        _empContext.SaveChanges();
+
+        return dep;
     }
 }

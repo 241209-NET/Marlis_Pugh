@@ -18,12 +18,20 @@ public class AccountHolderRepository : IAccountHolderRepository
     }
     public AccountHolder CreateAccount(AccountHolder newAccount)
     {
-        throw new NotImplementedException();
+         _empContext.AccountHolders.Add(newAccount);
+            _empContext.SaveChanges();
+
+            return newAccount; 
     }
 
     public void DeleteAccountHolderById(int id)
     {
-        throw new NotImplementedException();
+        AccountHolder? acc = GetAccountById(id);
+        
+            _empContext.AccountHolders.Remove(acc!);
+            _empContext.SaveChanges();
+
+            
     }
 
     public IEnumerable<AccountHolder> FindAllAccounts()
@@ -33,11 +41,22 @@ public class AccountHolderRepository : IAccountHolderRepository
 
     public AccountHolder? GetAccountById(int id)
     {
-        throw new NotImplementedException();
+        return _empContext.AccountHolders.Find(id);
     }
 
     public IEnumerable<AccountHolder> GetAccountByName(string name)
     {
         throw new NotImplementedException();
+    }
+
+    public AccountHolder? UpdateAccountHolderById(int id, string email)
+    {
+        
+        AccountHolder? acc = GetAccountById(id);
+        acc!.email = email; 
+        _empContext.AccountHolders.Update(acc);
+        _empContext.SaveChanges();
+
+        return acc;
     }
 }

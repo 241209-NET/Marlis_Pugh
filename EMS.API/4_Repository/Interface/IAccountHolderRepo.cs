@@ -12,6 +12,10 @@ AccountHolder? GetAccountById(int id);
 IEnumerable<AccountHolder> GetAccountByName(string name);
 void DeleteAccountHolderById(int id);
 
+AccountHolder? UpdateAccountHolderById(int id, string name);
+
+
+
 
 
 

@@ -9,7 +9,9 @@ Employee CreateEmployee(Employee newEmp);
 IEnumerable<Employee> FindAllEmps();
 Employee? GetEmployeeById(int id);
 IEnumerable<Employee> GetEmployeeByName(string name);
-void DeleteEmployeeById(int id);
+Employee? DeleteEmployeeById(int id);
+
+Employee? UpdateEmployeeById(int id, string Fname);
 
 
 

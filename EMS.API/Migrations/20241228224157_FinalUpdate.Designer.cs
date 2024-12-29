@@ -3,6 +3,7 @@ using EMS.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EMS.API.Migrations
 {
     [DbContext(typeof(EmployeeContext))]
-    partial class EmployeeContextModelSnapshot : ModelSnapshot
+    [Migration("20241228224157_FinalUpdate")]
+    partial class FinalUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,6 +32,9 @@ namespace EMS.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("EmployeeId")
+                        .HasColumnType("int");
+
                     b.Property<string>("email")
                         .HasColumnType("nvarchar(max)");
 
@@ -36,6 +42,8 @@ namespace EMS.API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
 
                     b.ToTable("AccountHolders");
                 });
@@ -48,10 +56,15 @@ namespace EMS.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("EmployeeId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
 
                     b.ToTable("Departments");
                 });
@@ -64,31 +77,16 @@ namespace EMS.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AccountId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("DepartmentId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Fname")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Lname")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RoleId")
-                        .HasColumnType("int");
+                    b.Property<string>("email")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AccountId");
-
-                    b.HasIndex("DepartmentId");
-
-                    b.HasIndex("RoleId");
 
                     b.ToTable("Employees");
                 });
@@ -123,33 +121,47 @@ namespace EMS.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("EmployeeId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EmployeeId");
+
                     b.ToTable("Roles");
+                });
+
+            modelBuilder.Entity("EMS.API.Model.AccountHolder", b =>
+                {
+                    b.HasOne("EMS.API.Model.Employee", null)
+                        .WithMany("Accounts")
+                        .HasForeignKey("EmployeeId");
+                });
+
+            modelBuilder.Entity("EMS.API.Model.Department", b =>
+                {
+                    b.HasOne("EMS.API.Model.Employee", null)
+                        .WithMany("Departments")
+                        .HasForeignKey("EmployeeId");
+                });
+
+            modelBuilder.Entity("EMS.API.Model.Role", b =>
+                {
+                    b.HasOne("EMS.API.Model.Employee", null)
+                        .WithMany("Roles")
+                        .HasForeignKey("EmployeeId");
                 });
 
             modelBuilder.Entity("EMS.API.Model.Employee", b =>
                 {
-                    b.HasOne("EMS.API.Model.AccountHolder", "Account")
-                        .WithMany()
-                        .HasForeignKey("AccountId");
+                    b.Navigation("Accounts");
 
-                    b.HasOne("EMS.API.Model.Department", "Department")
-                        .WithMany()
-                        .HasForeignKey("DepartmentId");
+                    b.Navigation("Departments");
 
-                    b.HasOne("EMS.API.Model.Role", "Role")
-                        .WithMany()
-                        .HasForeignKey("RoleId");
-
-                    b.Navigation("Account");
-
-                    b.Navigation("Department");
-
-                    b.Navigation("Role");
+                    b.Navigation("Roles");
                 });
 #pragma warning restore 612, 618
         }

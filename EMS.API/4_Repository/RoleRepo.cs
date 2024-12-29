@@ -19,12 +19,18 @@ public class RoleRepository : IRoleRepository
 
     public Role CreateRole(Role newRole)
     {
-        throw new NotImplementedException();
+         _empContext.Roles.Add(newRole);
+            _empContext.SaveChanges();
+
+            return newRole; 
     }
 
     public void DeleteRoleById(int id)
     {
-        throw new NotImplementedException();
+        Role? role = GetRoleById(id);
+        
+            _empContext.Roles.Remove(role!);
+            _empContext.SaveChanges();
     }
 
     public IEnumerable<Role> FindAllRoles()
@@ -34,11 +40,22 @@ public class RoleRepository : IRoleRepository
 
     public Role? GetRoleById(int id)
     {
-        throw new NotImplementedException();
+        return _empContext.Roles.Find(id);
     }
 
     public IEnumerable<Role> GetRoleByName(string name)
     {
         throw new NotImplementedException();
+    }
+
+    public Role? UpdateRoleById(int id, string name)
+    {
+        
+        Role? role = GetRoleById(id);
+        role!.Name = name; 
+        _empContext.Roles.Update(role);
+        _empContext.SaveChanges();
+
+        return role;
     }
 }

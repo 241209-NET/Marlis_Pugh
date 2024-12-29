@@ -10,7 +10,9 @@ Role CreateRole(Role newRole);
 IEnumerable<Role> FindAllRoles();
 Role? GetRoleById(int id);
 IEnumerable<Role> GetRoleByName(string name);
-void DeleteRoleById(int id);
+Role? DeleteRoleById(int id);
+
+Role? UpdateRoleById(int id, string name);
 
 
 

@@ -11,7 +11,9 @@ Products CreateProduct(Products newProduct);
 IEnumerable<Products> FindAllProducts();
 Products? GetProductById(int id);
 IEnumerable<Products> GetProductsByName(string name);
-void DeleteProductsById(int id);
+Products? DeleteProductsById(int id);
+
+Products? UpdateProductsById(int id, string name);
 
 
 

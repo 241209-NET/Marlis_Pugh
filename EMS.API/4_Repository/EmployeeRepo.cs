@@ -12,6 +12,7 @@ public class EmployeeRepository : IEmployeeRepository
 
 private readonly EmployeeContext _empContext;
 
+
 public EmployeeRepository(EmployeeContext empContext)
 {
     _empContext = empContext;
@@ -27,13 +28,17 @@ public EmployeeRepository(EmployeeContext empContext)
 
     public void DeleteEmployeeById(int id)
     {
-        throw new NotImplementedException();
+        Employee? emp = GetEmployeeById(id);
+        
+            _empContext.Employees.Remove(emp!);
+            _empContext.SaveChanges();
+        
     }
 
 
     public Employee? GetEmployeeById(int id)
     {
-        throw new NotImplementedException();
+        return _empContext.Employees.Find(id);
     }
 
     public IEnumerable<Employee> GetEmployeeByName(string name)
@@ -45,5 +50,16 @@ public EmployeeRepository(EmployeeContext empContext)
     IEnumerable<Employee> IEmployeeRepository.FindAllEmps()
     {
         return _empContext.Employees.ToList();
+    }
+
+    public Employee? UpdateEmployeeById(int id, string Fname)
+    {
+        
+        Employee? emp = GetEmployeeById(id);
+        emp!.Fname = Fname; 
+        _empContext.Employees.Update(emp);
+        _empContext.SaveChanges();
+
+        return emp;
     }
 }

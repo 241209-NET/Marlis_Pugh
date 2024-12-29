@@ -15,12 +15,14 @@ public class DepartmentService : IDepartmentService
 
     public Department CreateDepartment(Department newDepartment)
     {
-        throw new NotImplementedException();
+        return _departmentRepository.CreateDepartment(newDepartment);
     }
 
-    public void DeleteDepartmentById(int id)
+    public Department? DeleteDepartmentById(int id)
     {
-        throw new NotImplementedException();
+         var p = GetDepartmentById(id);
+        if(p is not null) _departmentRepository.DeleteDepartmentById(id);
+        return p;
     }
 
     public IEnumerable<Department> FindAllDepartments()
@@ -31,11 +33,21 @@ public class DepartmentService : IDepartmentService
 
     public Department? GetDepartmentById(int id)
     {
-        throw new NotImplementedException();
+        if(id < 1) return null;
+        return _departmentRepository.GetDepartmentById(id);
     }
 
     public IEnumerable<Department> GetDepartmentByName(string name)
     {
         throw new NotImplementedException();
+    }
+
+    public Department? UpdateDepartmentById(int id, string name)
+    {
+
+        Department? dep = GetDepartmentById(id);
+        if(dep is not null) _departmentRepository.UpdateDepartmentById(id, name);
+        return dep;
+       
     }
 }

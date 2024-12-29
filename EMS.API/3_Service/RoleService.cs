@@ -15,12 +15,14 @@ public class RoleService : IRoleService
 
     public Role CreateRole(Role newRole)
     {
-        throw new NotImplementedException();
+        return _roleRepository.CreateRole(newRole);
     }
 
-    public void DeleteRoleById(int id)
+    public Role? DeleteRoleById(int id)
     {
-        throw new NotImplementedException();
+         var p = GetRoleById(id);
+        if(p is not null) _roleRepository.DeleteRoleById(id);
+        return p;
     }
 
     public IEnumerable<Role> FindAllRoles()
@@ -31,11 +33,21 @@ public class RoleService : IRoleService
 
     public Role? GetRoleById(int id)
     {
-        throw new NotImplementedException();
+        if(id < 1) return null;
+        return _roleRepository.GetRoleById(id);
     }
 
     public IEnumerable<Role> GetRoleByName(string name)
     {
         throw new NotImplementedException();
+    }
+
+    public Role? UpdateRoleById(int id, string name)
+    {
+
+        Role? role = GetRoleById(id);
+        if(role is not null) _roleRepository.UpdateRoleById(id, name);
+        return role;
+       
     }
 }
